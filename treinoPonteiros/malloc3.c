@@ -2,10 +2,9 @@
 #include <stdlib.h>
 
 int main() {
-    int n, soma = 0;
-    float media;
+    int n;
 
-    printf("Digite o tamanho do vetor: ");
+    printf("Tamanho: ");
     scanf("%d", &n);
 
     int* valor = malloc(n * sizeof(int));
@@ -20,16 +19,11 @@ int main() {
         scanf("%d", &valor[i]);
     }
 
-    printf("\n=== Valores Guardados ===\n");
+    printf("\n=== Valores guardados ===\n");
 
     for (int i = 0; i < n; i++) {
-        printf("Valor %d: %d\n", i+1, valor[i]);
-
-        soma += valor[i];
+        printf("Valor %d = %d\n", i+1, valor[i]);
     }
-
-    media = (float)soma / n;
-    printf("\nMEDIA = %.2f\n", media);
 
     free(valor);
 
