@@ -112,7 +112,106 @@ void registar_emprestimo() {
 }
 
 void salvar_dados() {
-    
+    FILE *f_livros, *f_users, *f_emprestimos;
+    f_livros = fopen("livros.txt", "w");
+    f_users = fopen("utilizadores.txt", "w");
+    f_emprestimos = fopen("emprestimos.txt", "w");
+
+    if (f_livros == NULL) {
+        printf("Erro ao abrir o arquivo 'livros.txt'.\n");
+        return;
+    }
+
+    if (f_users == NULL) {
+        printf("Erro ao abrir o arquivo 'utilizadores.txt'.\n");
+        return;
+    }
+
+    if (f_emprestimos == NULL) {
+        printf("Erro ao abrir o arquivo 'emprestimos.txt'.\n");
+        return;
+    }
+
+    for (int i = 0; i < total_livros; i++) {
+        fprintf(f_livros, "%d|%s|%s|%d|%d\n", 
+            livros[i].codigo,
+            livros[i].titulo,
+            livros[i].autor,
+            livros[i].quant_total,
+            livros[i].quant_disp);
+    }
+
+    for (int i = 0; i < total_users; i++) {
+        fprintf(f_users, "%d|%s|%d\n", 
+            users[i].codigo,
+            users[i].nome,
+            users[i].idade);
+    }
+
+    for (int i = 0; i < total_emp; i++) {
+        fprintf(f_emprestimos, "%d|%d|%d\n", 
+            emp[i].cod_livro,
+            emp[i].cod_user,
+            emp[i].devolucao);
+    }
+
+    fclose(f_livros);
+    fclose(f_users);
+    fclose(f_emprestimos);
+
+    return;
+}
+
+void carregar_dados() {
+    FILE *f_livros, *f_users, *f_emprestimos;
+    f_livros = fopen("livros.txt", "r");
+    f_users = fopen("utilizadores.txt", "r");
+    f_emprestimos = fopen("emprestimos.txt", "r");
+
+    if (f_livros == NULL) {
+        printf("Erro ao abrir o arquivo 'livros.txt'.\n");
+        return;
+    }
+
+    if (f_users == NULL) {
+        printf("Erro ao abrir o arquivo 'utilizadores.txt'.\n");
+        return;
+    }
+
+    if (f_emprestimos == NULL) {
+        printf("Erro ao abrir o arquivo 'emprestimos.txt'.\n");
+        return;
+    }
+
+    while (fscanf(f_livros, "%d|%s|%s|%d|%d\n", 
+            &livros[total_livros].codigo,
+            livros[total_livros].titulo,
+            livros[total_livros].autor,
+            &livros[total_livros].quant_total,
+            &livros[total_livros].quant_disp) == 5) {
+
+                total_livros++;
+    }
+
+    while (fscanf(f_users, "%d|%s|%d\n", 
+            &users[total_users].codigo,
+            users[total_users].nome,
+            &users[total_users].idade) == 3) {
+
+                total_users++;
+    }
+
+    while (fscanf(f_emprestimos, "%d|%d|%d\n", 
+            &emp[total_emp].cod_livro,
+            &emp[total_emp].cod_user,
+            &emp[total_emp].devolucao) == 3) {
+
+                total_emp++;
+    }
+
+    fclose(f_livros);
+    fclose(f_users);
+    fclose(f_emprestimos);
 }
 
 int main() {
