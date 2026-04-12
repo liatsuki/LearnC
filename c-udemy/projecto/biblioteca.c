@@ -101,12 +101,39 @@ void registar_emprestimo() {
 
             for (int j = 0; j < total_users; j++) {
                 if (users[j].codigo == cod_user) {
-                    // utilizador existe! regista o emprestimo
+                    emp[total_emp].cod_livro = cod_livro;
+                    emp[total_emp].cod_user  = cod_user;
+                    emp[total_emp].devolucao = 0;  // 0 = em andamento
+                    total_emp++;
+                    livros[i].quant_disp--;  // diminui a quantidade disponível
+                    printf("Emprestimo registado com sucesso!\n");
                 }
             }
 
         } else {
             printf("Livro nao disponivel ou nao existe.\n");
+        }
+    }
+}
+
+void registar_devolucao() {
+    int cod_livro;
+    printf("Codigo do livro:");
+    scanf("%d", &cod_livro);
+
+    int cod_users;
+    printf("Codigo do utilizador:");
+    scanf("%d", &cod_users);
+
+    for (int i = 0; i < total_emp; i++) {
+        if (emp[i].cod_livro == cod_livro && emp[i].cod_user == cod_users && emp[i].devolucao == 0) {
+            emp[i].devolucao = 1;
+            for (int j = 0; j < total_livros; j++) {
+                if (livros[j].codigo == cod_livro) {
+                    livros[j].quant_disp++;
+                }
+            }
+            printf("Devolucao registada com sucesso!\n");
         }
     }
 }
