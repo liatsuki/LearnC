@@ -65,7 +65,7 @@ void exibir_livros() {
     printf("\n=== LIVROS ===\n");
 
     for (int i = 0; i < total_livros; i++) {
-        printf("Codigo: %d | Titulo: %s | Autor: %s | Quantidade total: %d | Quantidade disponivel: %d\n", 
+        printf("Codigo do livro: %d | Titulo: %s | Autor: %s | Quantidade total: %d | Quantidade disponivel: %d\n", 
             livros[i].codigo, 
             livros[i].titulo, 
             livros[i].autor, 
@@ -78,7 +78,7 @@ void exibir_utilizadores() {
     printf("\n=== Utilizadores ===\n");
 
     for (int i = 0; i < total_users; i++) {
-        printf("Codigo: %d | Nome: %s | Idade: %d\n", 
+        printf("Codigo do utilizador: %d | Nome: %s | Idade: %d\n", 
             users[i].codigo,
             users[i].nome,
             users[i].idade);
@@ -87,20 +87,32 @@ void exibir_utilizadores() {
 
 void registar_emprestimo() {
     int cod_livro;
-    printf("Codigo:");
+    printf("Codigo do livro:");
     scanf("%d", &cod_livro);
 
     for (int i = 0; i < total_livros; i++) {
+
         if (livros[i].codigo == cod_livro  && livros[i].quant_disp > 0) {
             printf("Livro disponivel para emprestimo.\n");
 
-            
-            printf("Codigo: ");
+            int cod_user;
+            printf("Codigo do utilizador: ");
             scanf("%d", &cod_user);
+
+            for (int j = 0; j < total_users; j++) {
+                if (users[j].codigo == cod_user) {
+                    // utilizador existe! regista o emprestimo
+                }
+            }
+
         } else {
             printf("Livro nao disponivel ou nao existe.\n");
         }
     }
+}
+
+void salvar_dados() {
+    
 }
 
 int main() {
