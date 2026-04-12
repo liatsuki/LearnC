@@ -138,6 +138,18 @@ void registar_devolucao() {
     }
 }
 
+void exibir_emprestimos_andamento() {
+    printf("\n=== EMPRESTIMOS ===\n");
+
+    for (int i = 0; i < total_emp; i++) {
+        if(emp[i].devolucao == 0) {
+            printf("Codigo do livro: %d | Codigo do utilizador: %d\n", 
+            emp[i].cod_livro,
+            emp[i].cod_user);
+        }
+    }
+}
+
 void salvar_dados() {
     FILE *f_livros, *f_users, *f_emprestimos;
     f_livros = fopen("livros.txt", "w");
