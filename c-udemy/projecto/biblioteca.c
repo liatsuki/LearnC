@@ -253,6 +253,57 @@ void carregar_dados() {
     fclose(f_emprestimos);
 }
 
-int main() {
+void exibir_menu() {
+    printf("\n=== Biblioteca ===\n");
+    printf("1. Cadastrar livro\n");
+    printf("2. Exibir livros\n");
+    printf("3. Cadastrar utilizador\n");
+    printf("4. Exibir utilizadores\n");
+    printf("5. Registar emprestimo\n");
+    printf("6. Registar devolucao\n");
+    printf("7. Exibir emprestimos em andamento\n\n");
+    printf("0. Sair");
+}
 
+int main() {
+    int opcao;
+
+    carregar_dados();
+
+    do {
+        exibir_menu();
+
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrar_livro();
+                break;
+            case 2:
+                exibir_livros();
+                break;
+            case 3:
+                cadastrar_utilizador();
+                break;
+            case 4:
+                exibir_utilizadores();
+                break;
+            case 5:
+                registar_emprestimo();
+                break;
+            case 6:
+                registar_devolucao();
+                break;
+            case 7:
+                exibir_emprestimos_andamento();
+                break;
+            case 0:
+                salvar_dados();
+                printf("Obrigado! Volte sempre!\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+    } while (opcao != 0);
 }
