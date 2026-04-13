@@ -262,7 +262,8 @@ void exibir_menu() {
     printf("5. Registar emprestimo\n");
     printf("6. Registar devolucao\n");
     printf("7. Exibir emprestimos em andamento\n\n");
-    printf("0. Sair");
+    printf("0. Sair\n");
+    printf("\n===================\n");
 }
 
 int main() {
