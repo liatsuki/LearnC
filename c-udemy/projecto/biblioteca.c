@@ -233,7 +233,7 @@ void carregar_dados() {
         return;
     }
 
-    while (fscanf(f_livros, "%d|%s|%s|%d|%d\n", 
+    while (fscanf(f_livros, "%d|%[^|]|%[^|]|%d|%d\n", 
             &livros[total_livros].codigo,
             livros[total_livros].titulo,
             livros[total_livros].autor,
@@ -243,7 +243,7 @@ void carregar_dados() {
                 total_livros++;
     }
 
-    while (fscanf(f_users, "%d|%s|%d\n", 
+    while (fscanf(f_users, "%d|%[^|]|%d\n", 
             &users[total_users].codigo,
             users[total_users].nome,
             &users[total_users].idade) == 3) {
