@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define MAX_LIVROS 100
 #define MAX_USERS 100
@@ -33,11 +34,15 @@ struct utilizador users[MAX_USERS];
 struct emprestimo emp[MAX_EMPRESTIMOS];
 
 void cadastrar_livro() {
+    getchar();
+
     printf("Titulo: ");
     fgets(livros[total_livros].titulo, 100, stdin); // ler frases com espacos
+    livros[total_livros].titulo[strcspn(livros[total_livros].titulo, "\n")] = '\0';
 
     printf("Autor: ");
     fgets(livros[total_livros].autor, 50, stdin);
+    livros[total_livros].autor[strcspn(livros[total_livros].autor, "\n")] = '\0';
 
     printf("Quantidade Total: ");
     scanf("%d", &livros[total_livros].quant_total);
@@ -50,10 +55,13 @@ void cadastrar_livro() {
 }
 
 void cadastrar_utilizador() {
+    getchar();
+
     users[total_users].codigo = total_users + 1;  // codigo gerado automaticamente
 
     printf("Nome: ");
     fgets(users[total_users].nome, 50, stdin);
+    users[total_users].nome[strcspn(users[total_users].nome, "\n")] = '\0';
 
     printf("Idade: ");
     scanf("%d", &users[total_users].idade);
@@ -90,6 +98,8 @@ void registar_emprestimo() {
     printf("Codigo do livro:");
     scanf("%d", &cod_livro);
 
+    getchar();
+
     for (int i = 0; i < total_livros; i++) {
 
         if (livros[i].codigo == cod_livro  && livros[i].quant_disp > 0) {
@@ -107,12 +117,11 @@ void registar_emprestimo() {
                     total_emp++;
                     livros[i].quant_disp--;  // diminui a quantidade disponível
                     printf("Emprestimo registado com sucesso!\n");
+                    break;
                 }
             }
 
-        } else {
-            printf("Livro nao disponivel ou nao existe.\n");
-        }
+        } 
     }
 }
 
@@ -140,6 +149,8 @@ void registar_devolucao() {
 
 void exibir_emprestimos_andamento() {
     printf("\n=== EMPRESTIMOS ===\n");
+
+    // printf("Total emprestimos: %d\n", total_emp);
 
     for (int i = 0; i < total_emp; i++) {
         if(emp[i].devolucao == 0) {
@@ -276,6 +287,8 @@ int main() {
 
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
+
+        // getchar();
 
         switch (opcao) {
             case 1:
