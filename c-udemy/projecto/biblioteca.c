@@ -264,31 +264,25 @@ void carregar_dados() {
     fclose(f_emprestimos);
 }
 
-void exibir_menu() {
-    printf("\n=== Biblioteca ===\n");
-    printf("1. Cadastrar livro\n");
-    printf("2. Exibir livros\n");
-    printf("3. Cadastrar utilizador\n");
-    printf("4. Exibir utilizadores\n");
-    printf("5. Registar emprestimo\n");
-    printf("6. Registar devolucao\n");
-    printf("7. Exibir emprestimos em andamento\n\n");
-    printf("0. Sair\n");
-    printf("\n===================\n");
-}
-
-int main() {
+void menu() {
     int opcao;
 
     carregar_dados();
 
     do {
-        exibir_menu();
+        printf("\n=== MENU Biblioteca ===\n");
+        printf("1. Cadastrar livro\n");
+        printf("2. Exibir livros\n");
+        printf("3. Cadastrar utilizador\n");
+        printf("4. Exibir utilizadores\n");
+        printf("5. Registar emprestimo\n");
+        printf("6. Registar devolucao\n");
+        printf("7. Exibir emprestimos em andamento\n");
+        printf("0. Sair\n");
+        printf("=======================\n");
 
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
-
-        // getchar();
 
         switch (opcao) {
             case 1:
@@ -314,10 +308,18 @@ int main() {
                 break;
             case 0:
                 salvar_dados();
-                printf("Obrigado! Volte sempre!\n");
+                printf("\n  Encerrando o programa...\n\n");
                 break;
             default:
                 printf("Opcao invalida!\n");
         }
     } while (opcao != 0);
 }
+
+int main() {
+    menu();
+    return 0;
+}
+
+// Sugestao de Resposta:
+// https://github.com/oguscaetano/curso-log-prog-c/blob/main/projeto-1.c */
