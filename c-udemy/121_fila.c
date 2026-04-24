@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int fila[10];     // 10 posicoes
+int inicio = 0;   // inicio da fila - posicao 0
+int fim = 0;      // se a fila for so 1 elemento
+int tamanho_maximo = 10;  // tamanho do vetor
+
+// adicionar um novo elemento no final da fila
+void enqueue(int valor) {
+    if (fim == tamanho_maximo) {
+        printf("Fila cheia!\n");
+        return;
+    }
+
+    fila[fim] = valor;
+    fim++;
+}
+
+void dequeue() {
+    if (inicio == fim) {
+        printf("Fila vazia!\n");
+        return;
+    }
+
+    // para deslocar os valores para as posicoes
+    for (int i = 0; i < fim - 1; i++) {
+        fila[i] = fila[i + 1];
+    }
+
+    fim--;
+}
+
+// ???
+int front() {
+    if (inicio == fim) {
+        printf("Fila vazia!\n");
+        return -1;
+    }
+
+    return fila[inicio];
+}
+
+int main() {
+
+    enqueue(1);
+    enqueue(28);
+    enqueue(7);
+    enqueue(100);
+
+    printf("Primeiro elemento da fila: %d\n", front());  // 1
+    printf("Tamanho da fila: %d\n", fim);                // 4
+
+    printf("\n");
+    dequeue();
+
+    printf("Primeiro elemento da fila: %d\n", front());  // 28
+    printf("Tamanho da fila: %d\n", fim);                // 3
+
+}
