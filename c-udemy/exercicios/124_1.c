@@ -9,6 +9,8 @@ struct Pessoa {
 int main() {
     struct Pessoa p1, p2, p3;
 
+    printf("\n-> Usar (.) para numero decimal.\n\n");
+
     printf("=== Pessoa 1 ===\n");
     printf("Nome P1: ");
     scanf("%s", p1.nome);
@@ -37,6 +39,19 @@ int main() {
     printf("Altura P3: ");
     scanf("%f", &p3.altura);
 
-    printf("Dados da mais velha:");
-    
+    // Encontrar a mais velha
+    struct Pessoa maisVelha = p1;
+
+    if (p2.idade > maisVelha.idade)
+        maisVelha = p2;
+
+    if (p3.idade > maisVelha.idade)
+        maisVelha = p3;
+
+    printf("\n=== Dados da pessoa mais velha ===\n");
+    printf("Nome: %s\n", maisVelha.nome);
+    printf("Idade: %d\n", maisVelha.idade);
+    printf("Altura: %.2f\n", maisVelha.altura);
+
+    return 0;
 }
