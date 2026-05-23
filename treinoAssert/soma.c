@@ -12,6 +12,7 @@ void testar_soma() { // testes
     assert(soma(-1, 1) == 0);
     assert(soma(-2, -3) == -5);
     assert(soma(2, 1) == 10); // Assertion failed: soma(2, 1) == 10, file soma.c, line 14
+    printf("Ola Mundo!\n");
 }
 
 int main() {
